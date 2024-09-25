@@ -26,6 +26,5 @@ def run(port):
             resp = [sum,partition,n,t,s,e]
             sock.sendto(pickle.dumps(resp),address)
 
-if __name__ =="__main__":
-    run(3003)
+run(3003)
 
