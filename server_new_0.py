@@ -2,11 +2,11 @@ import socket
 import pickle
 ip = "127.0.0.1"
 
-def run(port):
+def run(port,max_req):
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
     sock.bind((ip,port))
 
-    while True:
+    for i in range (max_req):
         data,address = sock.recvfrom(1024)
         req = pickle.loads(data)
 
@@ -17,8 +17,8 @@ def run(port):
             s=req[3]
             e=req[4]
             sum,temp=0,0
-            for i in range(s,e+1):
-                temp = i**t
+            for j in range(s,e+1):
+                temp = j**t
                 sum=sum+temp
 
 
@@ -27,5 +27,5 @@ def run(port):
             sock.sendto(pickle.dumps(resp),address)
 
 
-run(3000)
+run(3000,max_req=10)
 
